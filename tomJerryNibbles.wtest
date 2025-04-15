@@ -1,17 +1,106 @@
 import tomJerryNibbles.*
 
 describe "Grupo de test" {
-
-  test "test 1" {
-    assert.equals(100, 50+50)
+  //historia
+  test "historia" {
+    
+    assert.equals(10,tom.velocidadMaxima())
+    tom.comerUnRaton(jerry)
+    assert.equals(102,tom.cantidadEnergia())
+    assert.equals(15.2,tom.velocidadMaxima())
+    tom.correr(24)
+    assert.equals(14,tom.velocidadMaxima())
+    tom.comerUnRaton(nibbles)
+    assert.equals(18.7,tom.velocidadMaxima())
+    jerry.cumpleAños()
+    tom.comerUnRaton(jerry)
+    assert.equals(25.9,tom.velocidadMaxima())
+    tom.correr(38)
+    assert.equals(24,tom.velocidadMaxima())
   }
 
-  test "test 3" {
-    assert.that(true)
+
+
+  test "probarSiDevuelveQueRatoSeComio" {
+    assert.equals("Tom comio a Sparks",tom.comerUnRaton(sparks))
+    assert.equals("Tom comio a Jerry", tom.comerUnRaton(jerry))
+    assert.equals("Tom comio a Nibbles",tom.comerUnRaton(nibbles))
   }
 
-  test "test 4" {
-    assert.notThat(false)
+  test "probarSiDevuelveLosMetrosRecorridos"{
+    assert.equals("Tom corrio un total de 10 metros",tom.correr(10))
+  }
+  test "laEnergiaDeTomBajaDespuesDeCorrer"{
+    tom.correr(10)
+    assert.equals(45,tom.cantidadEnergia() )
   }
 
+  
+
+  test "devuelveElPesoDeJerry" {
+    assert.equals(40,jerry.peso())
+  }
+  test "devuelveLaEdadDeJerry" {
+    assert.equals(2,jerry.edad())
+  }
+  test "devuelveElNombreDeJerry"{
+  assert.equals("Jerry",jerry.nombre())  
+  }
+  test "jerryCumpleaños" {
+    jerry.cumpleAños()
+    jerry.cumpleAños()
+    assert.equals(4, jerry.edad())
+  }
+   test "devuelveElPesoDeNibbles" {
+    assert.equals(35,nibbles.peso())
+  }
+
+  test "devuelveElNombreDeNibbles"{
+  assert.equals("Nibbles",nibbles.nombre())  
+  }
+
+   test "devuelveElPesoDeSparks" {
+    assert.equals(45,sparks.peso())
+  }
+
+  test "devuelveElNombreDeSparks"{
+  assert.equals("Sparks",sparks.nombre())  
+  }
+  test"distanciaDeTomyJerry"{
+    assert.equals(15,jerry.distanciaDeTom())
+  }
+  test"cambiarDistanciaDeTomyJerry"{
+    jerry.cambiarDistancia(8)
+    assert.equals(8,jerry.distanciaDeTom())
+  }
+  test"distanciaDeTomyNibbles"{
+    assert.equals(25,nibbles.distanciaDeTom())
+  }
+   test"cambiarDistanciaDeTomyNibbles"{
+    nibbles.cambiarDistancia(88)
+    assert.equals(88,nibbles.distanciaDeTom())
+  }
+  test"distanciaDeTomySparks"{
+    assert.equals(40,sparks.distanciaDeTom())
+  }
+   test"cambiarDistanciaDeTomySparks"{
+    sparks.cambiarDistancia(10)
+    assert.equals(10,sparks.distanciaDeTom())
+  }
+  test "tomPuedeCazar" {
+    assert.that(tom.puedeCazar(jerry))
+  }
+  test "tomNoPuedeCazar"{
+    // la energia inicial es de 50
+
+    jerry.cambiarDistancia(108)
+    assert.notThat(tom.puedeCazar(jerry))
+  }
+  test"tomCazaUnRaton"{
+    tom.cazarUnRaton(sparks, sparks.distanciaDeTom())
+    // enregia= 50
+    //correr gasta 20 de energia
+    // comer recupera 57 deenergia
+    assert.equals(87,tom.cantidadEnergia())
+  }
 }
